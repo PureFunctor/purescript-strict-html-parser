@@ -1,0 +1,26 @@
+{
+    "name": "purescript-strict-html-parser",
+    "license": [
+        "BSD-3-Clause"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PureFunctor/strict-html-parser.git"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "output"
+    ],
+    "dependencies": {
+        "purescript-arrays": "^v6.0.0",
+        "purescript-control": "^v5.0.0",
+        "purescript-either": "^v5.0.0",
+        "purescript-lists": "^v6.0.0",
+        "purescript-prelude": "^v5.0.0",
+        "purescript-psci-support": "^v5.0.0",
+        "purescript-string-parsers": "^v6.0.0",
+        "purescript-strings": "^v5.0.0"
+    }
+}
