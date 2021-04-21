@@ -5,12 +5,11 @@ import Prelude
 
 import Control.Alternative ((<|>))
 import Data.Array as Array
-import Data.Either (Either(..))
-import Data.List (List(..))
+import Data.Either (Either)
 import Data.String (toLower) as String
 import Data.String.CodeUnits (fromCharArray) as String
 import Text.HTML.Types (Attribute(..), Name(..), Tag(..), Value(..), Tags)
-import Text.Parsing.StringParser (Parser, fail, runParser, try)
+import Text.Parsing.StringParser (ParseError, Parser, fail, runParser, try)
 import Text.Parsing.StringParser.CodePoints (anyChar, char, eof, regex, skipSpaces, string)
 import Text.Parsing.StringParser.Combinators (choice, manyTill, sepBy)
 
@@ -80,11 +79,8 @@ tagDoctype = do
 
 
 -- | Attempts to parse `Tags` from a `String`.
-parseTags :: String -> Tags
-parseTags html =
-  case runParser (manyTill tags eof) html of
-    Left _ -> Nil
-    Right t -> t
+parseTags :: String -> Either ParseError Tags
+parseTags = runParser (manyTill tags eof)
   where
     tags = choice $ try <$>
       [ tagOpen
